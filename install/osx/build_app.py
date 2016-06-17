@@ -22,7 +22,9 @@ from glob import glob
 from subprocess import check_output, call
 from collections import namedtuple
 from shutil import copy, copytree, rmtree
-from os import makedirs, rename, walk, path as ospath
+from os import makedirs, rename, walk, chmod, stat, path as ospath
+import os
+import stat
 import plistlib
 
 import argparse
@@ -201,6 +203,8 @@ for path, external, copy_as in inspected:
 			rpath = "-add_rpath '@loader_path/{}/'".format(ospath.relpath("bin/", ospath.dirname(filename)))
 		filename = prefix + filename
  
+	st = os.stat(filename)
+	os.chmod(filename, st.st_mode | stat.S_IWUSR)
 	cmd = "{0}install_name_tool {1} {2} {3} '{4}'".format(args.prefix, changes, id_, rpath, filename)
 	call(cmd, shell=True)
 
