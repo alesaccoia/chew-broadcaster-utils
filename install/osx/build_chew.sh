@@ -12,8 +12,17 @@ python ../../obs-studio-utils/install/osx/build_app.py
 
 cd "Chew Broadcaster.app/Contents/Resources/bin/"
 
+mv obs Chew
+
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Resources .
+
+# The original QtWebEngineProcess info plist will change the name of the executable
+# In the menu bar... so let's copy the one I saved
+rm -rf ./Resources/Info.plist
+cp ../../../../../cmake/osxbundle/QtWebEngineProcess.plist ./Resources/Info.plist
+
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Helpers .
+
 
 chmod +w ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 
