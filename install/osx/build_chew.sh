@@ -4,12 +4,19 @@
 # copies the necessary files for the functioning of the QT web engine framework into
 # the bin directory, then calls the build_app python scrpt that 
 
-cd rundir/RelWithDebInfo/bin
+make -j 8
+
+rm -rf "Chew Broadcaster.app"
+
+python ../../obs-studio-utils/install/osx/build_app.py
+
+cd "Chew Broadcaster.app/Contents/Resources/bin/"
 
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Resources .
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Helpers .
 
 chmod +w ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+
 
 install_name_tool -change @rpath/QtWebEngineCore @executable_path/../../../../QtWebEngineCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 install_name_tool -change @rpath/QtQuick @executable_path/../../../../QtQuick ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
@@ -20,10 +27,7 @@ install_name_tool -change @rpath/QtWebChannel @executable_path/../../../../QtWeb
 install_name_tool -change @rpath/QtCore @executable_path/../../../../QtCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 install_name_tool -change @rpath/QtPositioning @executable_path/../../../../QtPositioning ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 
-cd ../../../
-
-python ../../obs-studio-utils/install/osx/build_app.py
-
+cd ../../../../
 
 # 6/19/2019
 # Alessandro Saccoia <alessandro@alsc.co>
