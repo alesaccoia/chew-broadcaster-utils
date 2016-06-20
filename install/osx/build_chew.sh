@@ -41,7 +41,7 @@ install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtPositioning.framewor
 cd ../../../../
 
 echo "Signing the application"
-codesign --deep Chew\ Broadcaster.app -s "Developer ID Application: Alessandro Saccoia (DH5JXRTA39)"
+codesign --verbose --deep Chew\ Broadcaster.app -s "Developer ID Application: Alessandro Saccoia (DH5JXRTA39)"
 
 echo "Verifying the application"
 codesign --verbose --verify "Chew Broadcaster.app"
