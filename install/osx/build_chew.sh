@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# 6/19/2019
+# Alessandro Saccoia <alessandro@alsc.co>
+
 # alex this is totally hardcoded to my machine, who uses homebrew
 # copies the necessary files for the functioning of the QT web engine framework into
 # the bin directory, then calls the build_app python scrpt that 
@@ -23,9 +26,8 @@ cp ../../../../../cmake/osxbundle/QtWebEngineProcess.plist ./Resources/Info.plis
 
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Helpers .
 
-
+echo "Changing the rpath for QtWebEngineProcess dependencies"
 chmod +w ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-
 
 install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtWebEngineCore.framework/Versions/5/QtWebEngineCore @executable_path/../../../../QtWebEngineCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtQuick.framework/Versions/5/QtQuick @executable_path/../../../../QtQuick ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
@@ -38,5 +40,14 @@ install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtPositioning.framewor
 
 cd ../../../../
 
-# 6/19/2019
-# Alessandro Saccoia <alessandro@alsc.co>
+echo "Signing the application"
+codesign --deep Chew\ Broadcaster.app -s "Developer ID Application: Alessandro Saccoia (DH5JXRTA39)"
+
+echo "Verifying the application"
+codesign --verbose --verify "Chew Broadcaster.app"
+
+# echo "Zipping the app"
+# tar czfv ChewBroadcaster-beta5.tgz Chew\ Broadcaster.app/
+
+
+echo "Process ok"
