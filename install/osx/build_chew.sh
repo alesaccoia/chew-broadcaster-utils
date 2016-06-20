@@ -27,14 +27,14 @@ cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Helpers .
 chmod +w ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 
 
-install_name_tool -change @rpath/QtWebEngineCore @executable_path/../../../../QtWebEngineCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtQuick @executable_path/../../../../QtQuick ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtGui @executable_path/../../../../QtGui ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtQml @executable_path/../../../../QtQml ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtNetwork @executable_path/../../../../QtNetwork ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtWebChannel @executable_path/../../../../QtWebChannel ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtCore @executable_path/../../../../QtCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
-install_name_tool -change @rpath/QtPositioning @executable_path/../../../../QtPositioning ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtWebEngineCore.framework/Versions/5/QtWebEngineCore @executable_path/../../../../QtWebEngineCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtQuick.framework/Versions/5/QtQuick @executable_path/../../../../QtQuick ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtGui.framework/Versions/5/QtGui @executable_path/../../../../QtGui ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtQml.framework/Versions/5/QtQml @executable_path/../../../../QtQml ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtNetwork.framework/Versions/5/QtNetwork @executable_path/../../../../QtNetwork ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtWebChannel.framework/Versions/5/QtWebChannel @executable_path/../../../../QtWebChannel ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtCore.framework/Versions/5/QtCore @executable_path/../../../../QtCore ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
+install_name_tool -change /usr/local/Cellar/qt5/5.6.0/lib/QtPositioning.framework/Versions/5/QtPositioning @executable_path/../../../../QtPositioning ./Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess
 
 cd ../../../../
 
