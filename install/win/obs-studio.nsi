@@ -1,8 +1,9 @@
 ; Script generated with the Venis Install Wizard
 
 ; Define your application name
-!define APPNAME "OBS Multiplatform"
-!define APPNAMEANDVERSION "OBS Multiplatform ${APPVERSION}"
+!define APPVERSION "0.2.2"
+!define APPNAME "Chew Broadcaster"
+!define APPNAMEANDVERSION "Chew Broadcaster ${APPVERSION}"
 
 ; Additional script dependencies
 !include WinVer.nsh
@@ -12,7 +13,7 @@
 Name "${APPNAMEANDVERSION}"
 InstallDir "$PROGRAMFILES32\obs-studio"
 InstallDirRegKey HKLM "Software\${APPNAME}" ""
-OutFile "OBS-MP-${APPVERSION}-Installer.exe"
+OutFile "Chew-Broadcaster-${APPVERSION}-Installer.exe"
 
 ; Use compression
 SetCompressor LZMA
@@ -24,7 +25,7 @@ RequestExecutionLevel admin
 !include "MUI.nsh"
 
 !define MUI_ABORTWARNING
-!define MUI_FINISHPAGE_RUN "$INSTDIR\bin\32bit\obs32.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\bin\32bit\chew32.exe"
 
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE PreReqCheck
 
@@ -116,12 +117,12 @@ notRunning:
 FunctionEnd
 
 Function filesInUse
-	MessageBox MB_OK|MB_ICONEXCLAMATION "Some files were not able to be installed. If this is the first time you are installing OBS, please disable any anti-virus or other security software and try again. If you are re-installing or updating OBS, close any applications that may be have been hooked, or reboot and try again."  /SD IDOK
+	MessageBox MB_OK|MB_ICONEXCLAMATION "Some files were not able to be installed. If this is the first time you are installing Chew Broadcaster, please disable any anti-virus or other security software and try again. If you are re-installing or updating Chew Broadcaster, close any applications that may be have been hooked, or reboot and try again."  /SD IDOK
 FunctionEnd
 
 Var outputErrors
 
-Section "OBS Multiplatform" Section1
+Section "Chew Broadcaster" Section1
 
 	; Set Section properties
 	SetOverwrite on
@@ -149,14 +150,14 @@ Section "OBS Multiplatform" Section1
 	WriteUninstaller "$INSTDIR\uninstall.exe"
 
 	SetOutPath "$INSTDIR\bin\32bit"
-	CreateShortCut "$DESKTOP\OBS Multiplatform.lnk" "$INSTDIR\bin\32bit\obs32.exe"
-	CreateDirectory "$SMPROGRAMS\OBS Multiplatform"
-	CreateShortCut "$SMPROGRAMS\OBS Multiplatform\OBS Multiplatform (32bit).lnk" "$INSTDIR\bin\32bit\obs32.exe"
-	CreateShortCut "$SMPROGRAMS\OBS Multiplatform\Uninstall.lnk" "$INSTDIR\uninstall.exe"
+	CreateShortCut "$DESKTOP\Chew Broadcaster.lnk" "$INSTDIR\bin\32bit\chew32.exe"
+	CreateDirectory "$SMPROGRAMS\Chew.tv"
+	CreateShortCut "$SMPROGRAMS\Chew.tv\Chew Broadcaster (32bit).lnk" "$INSTDIR\bin\32bit\chew32.exe"
+	CreateShortCut "$SMPROGRAMS\Chew.tv\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 
 	${if} ${RunningX64}
 		SetOutPath "$INSTDIR\bin\64bit"
-		CreateShortCut "$SMPROGRAMS\OBS Multiplatform\OBS Multiplatform (64bit).lnk" "$INSTDIR\bin\64bit\obs64.exe"
+		CreateShortCut "$SMPROGRAMS\Chew.tv\Chew Broadcaster (64bit).lnk" "$INSTDIR\bin\64bit\chew64.exe"
 	${endif}
 
 	SetOutPath "$INSTDIR\bin\32bit"
@@ -179,7 +180,7 @@ SectionEnd
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
 
 ;Uninstall section
-Section "un.obs-studio Program Files"
+Section "un.chew-broadcaster Program Files"
 
 	SectionIn RO
 
@@ -191,30 +192,30 @@ Section "un.obs-studio Program Files"
 	Delete "$INSTDIR\uninstall.exe"
 
 	; Delete Shortcuts
-	Delete "$DESKTOP\OBS Multiplatform.lnk"
-	Delete "$SMPROGRAMS\OBS Multiplatform\OBS Multiplatform (32bit).lnk"
-	Delete "$SMPROGRAMS\OBS Multiplatform\Uninstall.lnk"
+	Delete "$DESKTOP\Chew Broadcaster.lnk"
+	Delete "$SMPROGRAMS\Chew.tv\Chew Broadcaster (32bit).lnk"
+	Delete "$SMPROGRAMS\Chew.tv\Uninstall.lnk"
 	${if} ${RunningX64}
-		Delete "$SMPROGRAMS\OBS Multiplatform\OBS Multiplatform (64bit).lnk"
+		Delete "$SMPROGRAMS\Chew.tv\Chew Broadcaster (64bit).lnk"
 	${endif}
 
-	; Clean up OBS Multiplatform
+	; Clean up Chew Broadcaster
 	RMDir /r "$INSTDIR\bin"
 	RMDir /r "$INSTDIR\data"
 	RMDir /r "$INSTDIR\obs-plugins"
 	RMDir "$INSTDIR"
 
 	; Remove remaining directories
-	RMDir "$SMPROGRAMS\OBS Multiplatform"
-	RMDir "$INSTDIR\OBS Multiplatform"
+	RMDir "$SMPROGRAMS\Chew.tv"
+	RMDir "$INSTDIR\Chew Broadcaster"
 SectionEnd
 
 Section /o "un.User Settings" Section2
-	RMDir /R "$APPDATA\obs-studio"
+	RMDir /R "$APPDATA\chew-broadcaster"
 SectionEnd
 
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_BEGIN
-	!insertmacro MUI_DESCRIPTION_TEXT ${Section1} "Remove the OBS program files."
+	!insertmacro MUI_DESCRIPTION_TEXT ${Section1} "Remove the Chew Broadcaster program files."
 	!insertmacro MUI_DESCRIPTION_TEXT ${Section2} "Removes all settings, plugins, scenes and sources, profiles, log files and other application data."
 !insertmacro MUI_UNFUNCTION_DESCRIPTION_END
 
