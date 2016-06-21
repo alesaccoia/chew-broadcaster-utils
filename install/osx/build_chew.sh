@@ -48,6 +48,6 @@ codesign --verbose --verify "Chew Broadcaster.app"
 
 # echo "Zipping the app"
 # tar czfv ChewBroadcaster-beta5.tgz Chew\ Broadcaster.app/
-
+spctl --assess --type execute "Chew Broadcaster.app"
 
 echo "Process ok"
