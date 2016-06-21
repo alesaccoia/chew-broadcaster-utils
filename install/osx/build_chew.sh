@@ -10,12 +10,13 @@
 make -j 8
 
 rm -rf "Chew Broadcaster.app"
+rm -rf tmp
 
 python ../../obs-studio-utils/install/osx/build_app.py
 
 cd "Chew Broadcaster.app/Contents/Resources/bin/"
 
-mv obs Chew
+# mv obs Chew
 
 cp -R /usr/local/opt/qt5/lib/QtWebEngineCore.framework/Versions/5/Resources .
 
