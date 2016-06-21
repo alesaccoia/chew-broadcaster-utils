@@ -51,4 +51,6 @@ codesign --verbose --verify "Chew Broadcaster.app"
 # tar czfv ChewBroadcaster-beta5.tgz Chew\ Broadcaster.app/
 spctl --assess --type execute "Chew Broadcaster.app"
 
+appdmg ../../obs-studio-utils/install/osx/dmgspec.json "Chew Broadcaster.dmg"
+
 echo "Process ok"
